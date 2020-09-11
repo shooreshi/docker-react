@@ -10,13 +10,15 @@ script:
     - docker run -e CI=true shooresh/docker-react npm run test
 
 deploy:
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
     provider: elasticbeanstalk
     region:  "eu-west-2"
     app: "docker-react"
     env: "DockerReact-env"
     bucket_name: "elasticbeanstalk-eu-west-2-453259886180"
     bucket_path: "docker-react"
+    skip_cleanup: true
     on: 
         branch: master       
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY    
+        
